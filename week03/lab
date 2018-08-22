@@ -1,0 +1,43 @@
+0. Get marked for last week - we will come around
+1. Read over lab - don't obsess about the details, mostly figure out how myEd is supposed to work
+2. Write integration test cases as input to myEd that test the cases you will be touching code for
+3. Write unit tests for the functions you will be writing - probably want to change putDLList().
+4. Write functions DLListBefore, DLListAfter and DLListDelete
+
+[1,3,4] 2 -> [1,3,2,4]
+void IntListInsertInOrder(IntList L, int v) {
+  struct IntListNode *new = newIntListNode(v);
+  
+  if (L->size == 0) {
+    new->next = L->first;
+    L->first = new;
+  } else {
+    struct IntListNode *curr = L->first;
+    
+    while (curr != NULL && curr->data < v) {
+      curr = curr->next;
+    }
+      
+    new->next = curr->next;
+    curr->next = new;
+  }
+  
+  L->size++;
+  if (new->next == NULL) {
+    L->last = new;
+  }
+}
+
+
+void IntListInsertInOrder(IntList L, int v) {
+    struct IntListNode *new = newIntListNode(v);
+	struct IntListNode *curr = L->first;
+	
+	while (curr->next != NULL && curr->next->data < v) {
+	  curr = curr->next;
+	}
+
+    new->next = curr->next;
+	curr->next = new;
+	L->size++;
+}
